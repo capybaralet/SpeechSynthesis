@@ -73,6 +73,7 @@ class TIMIT(DenseDesignMatrix):
         stop : int
             The sample to stop at for all input and output sequences
         window :... see class docstring
+        """
 
         self.test_args = locals()
         del self.test_args['self']
