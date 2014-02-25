@@ -1,0 +1,95 @@
+!obj:pylearn2.train.Train {
+    dataset: &train !obj:timitlong.TIMIT {
+                    },
+    model: !obj:pylearn2.models.mlp.MLP {
+               input_space: !obj:pylearn2.space.Conv2DSpace {
+                                shape: [45000, 1],
+                                num_channels: 1
+                            },
+               layers: [
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                            layer_name: 'h0',
+                            output_channels: 3,
+                            irange: .05,
+                            kernel_shape: [41, 1],
+                            pool_shape: [1, 1],
+                            pool_stride: [1, 1],
+                            pool_type: 'max',
+                            max_kernel_norm: 1.9365
+                        },
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                            layer_name: 'h1',
+                            output_channels: 6,
+                            irange: .05,
+                            kernel_shape: [41, 1],
+                            pool_shape: [1, 1],
+                            pool_stride: [1, 1],
+                            pool_type: 'max',
+                            max_kernel_norm: 1.9365
+                        },
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                            layer_name: 'h2',
+                            output_channels: 6,
+                            irange: .05,
+                            kernel_shape: [41, 1],
+                            pool_shape: [1, 1],
+                            pool_stride: [1, 1],
+                            pool_type: 'max',
+                            max_kernel_norm: 1.9365
+                        },
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                            layer_name: 'h3',
+                            output_channels: 6,
+                            irange: .05,
+                            kernel_shape: [41, 1],
+                            pool_shape: [1, 1],
+                            pool_stride: [1, 1],
+                            pool_type: 'max',
+                            max_kernel_norm: 1.9365
+                        },
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                            layer_name: 'h4',
+                            output_channels: 6,
+                            irange: .05,
+                            kernel_shape: [41, 1],
+                            pool_shape: [1, 1],
+                            pool_stride: [1, 1],
+                            pool_type: 'max',
+                            max_kernel_norm: 1.9365
+                        },
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                            layer_name: 'y',
+                            output_channels: 1,
+                            irange: .05,
+                            kernel_shape: [1, 1],
+                            pool_shape: [1, 1],
+                            pool_stride: [1, 1],
+                            pool_type: 'max',
+                            max_kernel_norm: 1.9365
+                        }
+                       ]
+    },
+    algorithm: !obj:pylearn2.training_algorithms.sgd.SGD {
+                   batch_size: 1,
+                   learning_rate: .01,
+                   monitoring_dataset: {
+                       'train': *train,
+                       'valid': !obj:timitlong.TIMIT {
+                                    which_set: 'valid'
+                                },
+                   },
+                   cost: !obj:pylearn2.costs.mlp.Default {},
+                   termination_criterion: !obj:pylearn2.termination_criteria.EpochCounter {
+                                              max_epochs: 2
+                                          }
+               },
+    extensions: [
+                 !obj:pylearn2.train_extensions.best_params.MonitorBasedSaveBest {
+                     channel_name: 'valid_objective',
+                     save_path: "/data/lisa/exp/kruegerd/ift6266project/ConvNetDemo.pkl"
+                 },
+                 !obj:pylearn2.training_algorithms.sgd.MonitorBasedLRAdjuster {
+                     channel_name: 'valid_objective'
+                 }
+                ]
+}
