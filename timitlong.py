@@ -28,8 +28,9 @@ from theano import function
 
 from pylearn2.datasets.dense_design_matrix import DefaultViewConverter
 from pylearn2.datasets.dense_design_matrix import DenseDesignMatrix
+
 # The shape that our audio sequences will have.
-IMAGES_SHAPE = [45000, 1, 1]
+IMAGES_SHAPE = [5000, 1, 1]
 
 class TIMIT(DenseDesignMatrix):
     """
@@ -96,6 +97,7 @@ class TIMIT(DenseDesignMatrix):
         print "self.raw_wav.shape, self.raw_wav[0].shape = ", self.raw_wav.shape, self.raw_wav[0].shape
         #self.num_examples = len(self.raw_wav)
 
+        IMAGES_SHAPE = [stop-start, 1, 1]
 
         X, y = features, targets
         view_converter = DefaultViewConverter(shape=IMAGES_SHAPE, axes=axes)
