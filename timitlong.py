@@ -55,7 +55,7 @@ class TIMIT(DenseDesignMatrix):
                  transformer=None,
                  start=0,
                  stop=45000,
-                 window=250,
+                 window=2000,
                  frame_width=200,
                  preprocessor=None,
                  fit_preprocessor=False,
@@ -88,7 +88,7 @@ class TIMIT(DenseDesignMatrix):
                 self.raw_wav[i] = (sequence - TIMIT._mean) / TIMIT._std
                 self.raw_wav[i] = self.raw_wav[i][start:stop]
                 features.append(self.raw_wav[i])
-                targets.append(self.raw_wav[i][frame_width:stop])
+                targets.append(self.raw_wav[i][start+frame_width:stop])
         features = numpy.array(features)
         targets = numpy.array(targets)
         self.raw_wav = features
