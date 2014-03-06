@@ -2460,12 +2460,20 @@ class ConvRectifiedLinear(Layer):
 
     @wraps(Layer.get_default_cost)
     def get_default_cost(self):
-
         return Default()
 
     @wraps(Layer.cost)
     def cost(self, Y, Y_hat):
-        return np.sum((Y-Y_hat)**2.0)
+        print 'using new cost'
+        return self.cost_from_cost_matrix(self.cost_matrix(Y, Y_hat))
+
+    @wraps(Layer.cost_from_cost_matrix)
+    def cost_from_cost_matrix(self, cost_matrix):
+        return cost_matrix.sum(axis=1).mean()
+
+    @wraps(Layer.cost_matrix)
+    def cost_matrix(self, Y, Y_hat):
+        return T.sqr(Y - Y_hat)
 
     def cost_from_X(self, data):
         """
