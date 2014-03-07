@@ -13,3 +13,5 @@ In run_error.py and run.py, you need to change the save_path.
 
 run.py is the latest script for running experiments.  run_error.py is a similar script that demonstrates an error I get when I try to use more than 64 channels in my ConvRectifiedLinear layers on GPU. 
 
+analyze_results.py is a script that will produce plots of results for all pkl files in the working directory.
+
