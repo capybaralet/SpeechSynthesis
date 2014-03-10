@@ -74,7 +74,7 @@ yaml_template = """
 # NOTE TO SELF:
 # In order to keep track of our experiments, if we start using different constants, we will keep this set, and add something to the path to reflect the change (constant_params=2)
 constants = {
-'k0': 101,
+'k0': 100,
 'ir': 0.05,
 'mkn': 3000000.0,
 'start': 43000,
