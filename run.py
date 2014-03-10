@@ -73,7 +73,7 @@ yaml_template = """
 
 constants = {
 'c0': 64,
-'k0': 101,
+'k0': 100,
 'ir': 0.05,
 'mkn': 3000000.0,
 'start': 43000,
@@ -84,7 +84,7 @@ constants = {
 
 # Not Implemented...
 deterministic_constants = {
-'fw': 100, # = k0-1
+'fw': 100, # = k0
 'shape': 2000, # = stop-start
 'output_length': 1900 # = stop-start-frame_width
 }
@@ -93,9 +93,9 @@ all_constants = dict(constants.items() + deterministic_constants.items())
 
 hparam_sets = []
 
-for i in range(20):
+for i in range(10):
     d = {'ib': 0.0}
-    d['lr'] = .000001 * 1.25**i
+    d['lr'] = .0000011 * 1.5**i
     hparam_sets.append(d)
 
 # add automatic experiment logging (keep a text file with all yaml/pkl filenames (and another file with details)... the first file will allow us to write scripts to efficiently generate plots or whatever we need to see for every result

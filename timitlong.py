@@ -79,10 +79,10 @@ class TIMIT(DenseDesignMatrix):
         features = []
         targets = []
         for i, sequence in enumerate(self.raw_wav):
-            if len(self.raw_wav[i]) < stop+window and len(self.raw_wav[i]) > stop-1:
+            if len(self.raw_wav[i]) < stop+window+1 and len(self.raw_wav[i]) > stop-1:
                 self.raw_wav[i] = (sequence - TIMIT._mean) / TIMIT._std
                 features.append(self.raw_wav[i][start:stop])
-                targets.append(self.raw_wav[i][start+frame_width:stop])
+                targets.append(self.raw_wav[i][start+frame_width:stop+1])
         features = numpy.array(features)
         targets = numpy.array(targets)
         self.raw_wav = features
@@ -94,6 +94,7 @@ class TIMIT(DenseDesignMatrix):
         print IMAGES_SHAPE
         print targets.shape
         print features.shape
+        #print "which_set", which_set
 
         X, y = features, targets
         view_converter = DefaultViewConverter(shape=IMAGES_SHAPE, axes=axes)
@@ -103,6 +104,7 @@ class TIMIT(DenseDesignMatrix):
 
 
     def _load_data(self, which_set):
+        #print "_load_data", which_set
         # Check which_set
         if which_set not in ['train', 'valid', 'test']:
             raise ValueError(which_set + " is not a recognized value. " +
