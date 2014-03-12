@@ -96,9 +96,9 @@ all_constants = dict(constants.items() + deterministic_constants.items())
 
 hparam_sets = []
 
-for i in range(2):
+for i in range(8):
     d = {}
-    d['c0'] = 64+i
+    d['c0'] = 64*2**i
     hparam_sets.append(d)
 
 # add automatic experiment logging (keep a text file with all yaml/pkl filenames (and another file with details)... the first file will allow us to write scripts to efficiently generate plots or whatever we need to see for every result

@@ -9,7 +9,7 @@ import timitlong
 import pylab as plt
 
 """
-@ Plan: 
+@ Plan:
 	1) Run experiments in batches.  (exp_batch's)
 	2) For each batch of experiments, have a directory.
 	3) This script takes a directory as input, or (CURRENTLY) works in the folder it is called from
@@ -59,7 +59,7 @@ directory = os.getcwd()
 #####
 # LOAD TEST DATA
 # For a given exp_batch, we want a start, stop, frame to be constant (or at least output_length = stop-start-frame_width)
-tl = timitlong.TIMIT(which_set='test', start=43000, stop=45000, window=4000, frame_width=100) # CHECK ME!
+tl = timitlong.TIMIT(which_set='test', start=43000, stop=45148, window=4000, frame_width=100) # CHECK ME!
 X0 = np.array(tl.X[0], dtype='float32')
 X0 = X0.reshape(1,len(X0),1,1)
 y0 = np.array(tl.y[0], dtype='float32')
@@ -113,8 +113,6 @@ for path in pkl_paths:
 #####
 # What ELSE to analyze???
 #
-# 
-
 
 
 

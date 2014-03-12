@@ -6,7 +6,7 @@ yaml_template = """
                         start: %(start)s,
                         stop: %(stop)s,
                         window: %(window)s,
-                        frame_width: %(fw)d
+                        frame_width: %(k0)d
                     },
     model: !obj:mlp.MLP {
                input_space: !obj:pylearn2.space.Conv2DSpace {
@@ -49,7 +49,7 @@ yaml_template = """
                                     start: %(start)s,
                                     stop: %(stop)s,
                                     window: %(window)s,
-                                    frame_width: %(fw)i
+                                    frame_width: %(k0)i
                                 },
                    },
                    cost: !obj:mlp.Default {},
@@ -84,8 +84,7 @@ constants = {
 
 # Not Implemented...
 deterministic_constants = {
-'fw': 100, # = k0
-'shape': 2000, # = stop-start
+'shape': constants['stop'] - constants['start'],
 'output_length': 1900 # = stop-start-frame_width
 }
 
