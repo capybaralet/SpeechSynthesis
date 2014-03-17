@@ -283,7 +283,7 @@ for hparams in hparam_sets:
     # run experiment
     subprocess.call(['/u/kruegerd/repo/pylearn2/pylearn2/scripts/train.py', yaml_file.name]) 
     training_log = open(training_log_path, 'a')
-    training_log.write('\nyaml_file.name')
+    training_log.write('\n'+yaml_file.name)
     training_log.close()
     print "done training!"
     ####################
@@ -312,6 +312,7 @@ for hparams in hparam_sets:
     plt.plot(train_obj, 'g') 
     plt.subplot(224) 
     plt.plot(valid_obj, 'b') 
+    fig.savefig(path[:-4]+'.jpg')
     # Generate from trained model (only handles runJP case currently)
     if path[:5] == 'runJP':
         old_layers = Mbest.layers
