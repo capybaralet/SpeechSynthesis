@@ -18,6 +18,8 @@ My modifications to mlp.py involve adding an option to use tied biases (tied_b) 
 
 _______________OLD FILES_____________________________________
 
+You can ignore the bash scripts and test folder.
+
 In run_error.py and run.py, you need to change the save_path. 
 
 runJP.py and run2layerJP.py are scripts designed to mimic some of Jean-Phillipe Raymond's MLPs (http://jpraymond.wordpress.com/)
