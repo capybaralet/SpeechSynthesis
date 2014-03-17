@@ -201,12 +201,12 @@ yaml_template = """
                    cost: !obj:pylearn2.models.mlp.Default {},
                    termination_criterion: !obj:pylearn2.termination_criteria.Or {
                                               criteria: [termination_criterion: !obj:pylearn2.termination_criteria.MonitorBased {
-                                                              channel_name: 'valid_objective',
-                                                              prop_decrease: 0.005,
-                                                              N: 10
+                                                                                    channel_name: 'valid_objective',
+                                                                                    prop_decrease: 0.005,
+                                                                                    N: 10
                                                          },
                                                          termination_criterion: !obj:pylearn2.termination_criteria.EpochCounter {
-                                                             max_epochs: %(max_epochs)i
+                                                                                    max_epochs: %(max_epochs)i
                                                          }]
                    },
     },
@@ -269,15 +269,15 @@ for hparams in hparam_sets:
     path = filename
     save_path = exp_dir
     for k in hparams.keys():
-        path = os.path.join(path, '_', str(k), '=', str(hparams[k]))
-    save_path_best = os.path.join(save_path, path, '_best.pkl')
-    save_path = os.path.join(save_path, path, '.pkl')
+        path = path + '_' + str(k) + '=' + str(hparams[k])
+    save_path_best = os.path.join(save_path, path + '_best.pkl')
+    save_path = os.path.join(save_path, path + '.pkl')
     print "save_path", save_path
     this_runs_params = dict(hparams.items() + all_constants.items() + 
                             {'save_path': save_path, 'save_path_best': save_path_best}.items() )
     yaml_str = yaml_template % this_runs_params
     # overwrites existing file!
-    yaml_file = open(os.path.join(path, '.yaml'), 'w')
+    yaml_file = open(path + '.yaml', 'w')
     yaml_file.write(yaml_str) 
     yaml_file.close()
     # run experiment
@@ -327,7 +327,7 @@ for hparams in hparam_sets:
         if len(b1.shape) > 1: b1 = b1[:,0]
         print W1.shape, W2.shape, b1.shape, b2.shape, "shapes"
         sigma = Mbest.monitor.channels['valid_objective'].val_record[-1]**.5
-        generated = generate(X0,W1,W2,b1,b2,frame_width,sigma)
+        generated = generate(X0, W1, W2, b1, b2, frame_width, sigma)
         fig = plt.figure()
         plt.subplot(311)
         plt.plot(generated, 'g')
@@ -336,9 +336,9 @@ for hparams in hparam_sets:
         plt.subplot(313)
         plt.plot(generated, 'g')
         plt.plot(X0.flatten()[:10000], 'b')
-        savepath = os.path.join(save_path[:-4], '_generated')
-        fig.savefig(os.path.join(savepath, '.jpg'))
-        wav.write(os.path.join(savepath, '.wav'),16000,generated)
+        savepath = save_path[:-4] + '_generated'
+        fig.savefig(savepath + '.jpg')
+        wav.write(savepath + '.wav', 16000, generated)
 
 os.chdir(original_dir)
 
