@@ -7,18 +7,16 @@ This is code for a class project.  There is an accompanying blog here: http://ds
 
 The most current script to run experiments is run_template.py.  This will allow you to run experiments on CNNs and automatically generate plots of the results automatically.  Read its docstring before use.
 
-You must use my versions of blas.py and cuda.cu instead of those in /theano/sandbox/cuda/.
+You must use my version of mlp.py (not pylearn2's).  My code should be compatible with pylearn2 once/if this PR is accepted: https://github.com/lisa-lab/pylearn2/pull/715
 
-You must use my version of mlp.py (not pylearn2's).  Some of the yaml files reflect this, some don't.  My code should be compatible with pylearn2 soon.
-
-Both mlp.py and timitlong.py should be in the same directory as the scripts that run experiments.  pylearn2's train.py script should be in this directory as well.
-
-My modifications to mlp.py involve adding an option to use tied biases (tied_b) for CNN kernels/channels.  Without this option, the CNN cannot take variable sized inputs.  
+Both mlp.py and timitlong.py should be in the same directory as the scripts that run experiments. 
 
 
 _______________OLD FILES_____________________________________
 
-You can ignore the bash scripts and test folder.
+You can ignore the bash scripts.
+
+The OLD file contains code I'm no longer using.
 
 In run_error.py and run.py, you need to change the save_path. 
 
