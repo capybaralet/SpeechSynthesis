@@ -9,6 +9,8 @@ The most current script to run experiments is run_template.py.  This will allow 
 
 You must use my version of mlp.py (not pylearn2's).  My code should be compatible with pylearn2 once/if this PR is accepted: https://github.com/lisa-lab/pylearn2/pull/715
 
+You also need the bleeding edge version of Theano.
+
 Both mlp.py and timitlong.py should be in the same directory as the scripts that run experiments. 
 
 
