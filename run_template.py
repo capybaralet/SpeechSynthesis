@@ -200,12 +200,12 @@ yaml_template = """
                    },
                    cost: !obj:pylearn2.models.mlp.Default {},
                    termination_criterion: !obj:pylearn2.termination_criteria.Or {
-                                              criteria: [termination_criterion: !obj:pylearn2.termination_criteria.MonitorBased {
-                                                                                    channel_name: 'valid_objective',
-                                                                                    prop_decrease: 0.005,
-                                                                                    N: 10
+                                              criteria: [!obj:pylearn2.termination_criteria.MonitorBased {
+                                                             channel_name: 'valid_objective',
+                                                             prop_decrease: 0.005,
+                                                             N: 10
                                                          },
-                                                         termination_criterion: !obj:pylearn2.termination_criteria.EpochCounter {
+                                                         !obj:pylearn2.termination_criteria.EpochCounter {
                                                                                     max_epochs: %(max_epochs)i
                                                          }]
                    },
