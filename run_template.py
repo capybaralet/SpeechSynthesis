@@ -34,7 +34,8 @@ from pylearn2.space import VectorSpace
 
     To configure the network, change the yaml_template, the parameters, and the SCRIPTNAME! (this should be automated, as well...)
 
-
+    
+    TODO: add testing, or write another script that skips all the analysis and record-keeping (and instead keeps test records... what failed and whatnot...)
 
     TODO: make it so you don't need to change the name if you make mods (it is detected automatically)...
 
@@ -56,7 +57,7 @@ X   TODO: early_stopping
 #############################################################################
 # Parameters for experiments
 
-project_name = "IFT6266/"
+project_name = "IFT6266/" # no starting '/'
 my_dir = '/data/lisa/exp/kruegerd/' # base directory for experiments and results (yaml, pkl, jpg files)
 train_dir = '/u/kruegerd/repo/pylearn2/pylearn2/scripts/train.py' # directory of pylearn2/scripts/train.py
 
@@ -149,7 +150,7 @@ yaml_template = """
                                 num_channels: 1
                             },
                layers: [
-                         !obj:pylearn2.models.mlp.ConvRectifiedLinear {
+                        !obj:pylearn2.models.mlp.ConvRectifiedLinear {
                             layer_name: 'h0',
                             output_channels: %(c0)d,
                             irange: %(ir)f,
@@ -234,7 +235,7 @@ original_dir = os.getcwd()
 
 trained_models = []
 
-filename = os.path.basename(__file__)[:-3] #remove '.py'
+filename = os.path.basename(__file__)[:-3] # this script's name (minus '.py')
 
 # make project_dir if it doesn't exist
 project_dir = os.path.join(my_dir,project_name)
