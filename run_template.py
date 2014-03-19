@@ -23,18 +23,18 @@ from pylearn2.space import VectorSpace
     It runs experiments for a fixed network architecture (given by yaml_template) with a given set of hyperparameters (hparam_sets).
     The results of the experiments are stored in: /my_dir/project_name/this_script_name/exp_num/hyperparams_of_a_model.
     "exp_num" is the number of times this script has been called previously (i.e. the number of times the experiment has been ran)
-    
-    If the experiment is changed, the script name should be as well (for now, would like to automate this).  
+
+    If the experiment is changed, the script name should be as well (for now, would like to automate this).
 
     For anyone other than me (David Krueger), change the following paths:
       my_dir = '/data/lisa/exp/kruegerd/' # base directory for experiments and results (yaml, pkl, jpg files)
       train_dir = '/u/kruegerd/repo/pylearn2/pylearn2/scripts/train.py' # directory of pylearn2/scripts/train.py
-   
+
     When starting a new project, change the project_name.
 
     To configure the network, change the yaml_template, the parameters, and the SCRIPTNAME! (this should be automated, as well...)
 
-    
+
     TODO: add testing, or write another script that skips all the analysis and record-keeping (and instead keeps test records... what failed and whatnot...)
 
     TODO: make it so you don't need to change the name if you make mods (it is detected automatically)...
@@ -46,11 +46,11 @@ from pylearn2.space import VectorSpace
     TODO: Improve logging so that it can record more information, such as:
         1. script contents
         2. system information
-        3. software version (etc.) information 
+        3. software version (etc.) information
 
     TODO: manage directories (stay in original_dir?)
 
-X   TODO: early_stopping 
+X   TODO: early_stopping
 
 """
 
@@ -79,7 +79,7 @@ deterministic_constants = {
 'fw': constants['k0'] + constants['k1'] - 1
 }
 
-all_constants = dict(constants.items() + deterministic_constants.items()) 
+all_constants = dict(constants.items() + deterministic_constants.items())
 
 hparam_sets = []
 
@@ -229,7 +229,7 @@ yaml_template = """
 # a project is a user-defined organizational tool
 # an "experiment" is a run of the script
 
-# not sure how to handle moving through directories (maybe just don't)... 
+# not sure how to handle moving through directories (maybe just don't)...
 # Ctrl+C/crash seems hard to handle...
 original_dir = os.getcwd()
 
@@ -247,9 +247,9 @@ if not os.path.exists(script_dir): os.makedirs(script_dir)
 log_path = os.path.join(script_dir,'exp_log.txt')
 if not os.path.exists(log_path):
     exp_num = 0
-else: 
+else:
     for i in open(log_path, 'r'):
-        exp_num = int(i) + 1 
+        exp_num = int(i) + 1
 log = open(log_path, 'w')
 log.write(str(exp_num))
 log.close()
@@ -274,7 +274,7 @@ for hparams in hparam_sets:
     save_path_best = os.path.join(save_path, path + '_best.pkl')
     save_path = os.path.join(save_path, path + '.pkl')
     print "save_path", save_path
-    this_runs_params = dict(hparams.items() + all_constants.items() + 
+    this_runs_params = dict(hparams.items() + all_constants.items() +
                             {'save_path': save_path, 'save_path_best': save_path_best}.items() )
     yaml_str = yaml_template % this_runs_params
     # overwrites existing file!
@@ -315,7 +315,7 @@ for hparams in hparam_sets:
     plt.plot(valid_obj, 'b') 
     fig.savefig(path[:-4]+'.jpg')
     # Generate from trained model (only handles runJP case currently)
-    if path[:5] == 'runJP':
+    if path.startswith('runJP'):
         old_layers = Mbest.layers
         new_layers = []
         l0 = old_layers[0]
