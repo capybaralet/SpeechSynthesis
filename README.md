@@ -7,16 +7,13 @@ This is code for a class project.  There is an accompanying blog here: http://ds
 
 The most current script to run experiments is run_template.py.  This will allow you to run experiments on CNNs and automatically generate plots of the results automatically.  Read its docstring before use.
 
-You must use my version of mlp.py (not pylearn2's).  My code should be compatible with pylearn2 once/if this PR is accepted: https://github.com/lisa-lab/pylearn2/pull/715
+You need the bleeding edge versions of Theano and Pylearn2.
 
-You also need the bleeding edge version of Theano.
-
-Both mlp.py and timitlong.py should be in the same directory as the scripts that run experiments. 
-
-
-_______________OLD FILES_____________________________________
+timitlong.py should be in the same directory as the scripts that run experiments. 
 
 You can ignore the bash scripts.
+
+_______________OLD FILES_____________________________________
 
 The OLD file contains code I'm no longer using.
 
