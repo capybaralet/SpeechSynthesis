@@ -1,5 +1,9 @@
 SpeechSynthesis
 ===============
+New additions: aa_dataset and stft.py.  You should remove the plotting from istft.py to use it, or check out the version I posted here:
+http://stackoverflow.com/questions/2459295/stft-and-istft-in-python
+
+
 
 Speech Synthesis (IFT6266 Project)
 
